@@ -32,14 +32,15 @@ import (
 )
 
 const (
-	CCSAck      = "ack"
-	CCSNack     = "nack"
-	CCSControl  = "control"
-	CCSReceipt  = "receipt"
-	httpAddress = "https://gcm-http.googleapis.com/gcm/send"
-	xmppHost    = "gcm.googleapis.com"
-	xmppPort    = "5235"
-	xmppAddress = xmppHost + ":" + xmppPort
+	CCSAck           = "ack"
+	CCSNack          = "nack"
+	CCSControl       = "control"
+	CCSReceipt       = "receipt"
+	httpAddress      = "https://gcm-http.googleapis.com/gcm/send"
+	xmppUsernameHost = "gcm.googleapis.com"
+	xmppHost         = "gcm-xmpp.googleapis.com"
+	xmppPort         = "5235"
+	xmppAddress      = xmppHost + ":" + xmppPort
 	// For ccs the min for exponential backoff has to be 1 sec
 	ccsMinBackoff = 1 * time.Second
 )
@@ -112,7 +113,7 @@ type HttpResponse struct {
 	Failure      uint     `json:"failure,omitempty"`
 	CanonicalIds uint     `json:"canonical_ids,omitempty"`
 	Results      []Result `json:"results,omitempty"`
-	MessageId    int     `json:"message_id,omitempty"`
+	MessageId    int      `json:"message_id,omitempty"`
 	Error        string   `json:"error,omitempty"`
 }
 
@@ -602,5 +603,5 @@ func authHeader(apiKey string) string {
 
 // xmppUser generates an xmpp username from a sender ID.
 func xmppUser(senderId string) string {
-	return senderId + "@" + xmppHost
+	return senderId + "@" + xmppUsernameHost
 }
