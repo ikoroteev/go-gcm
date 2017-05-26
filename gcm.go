@@ -27,7 +27,7 @@ import (
 	"time"
 
 	"github.com/jpillora/backoff"
-	"github.com/mattn/go-xmpp"
+	"github.com/ikoroteev/go-xmpp"
 	"github.com/pborman/uuid"
 )
 
